@@ -1,0 +1,2 @@
+# technologies
+project node + angular
