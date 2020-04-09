@@ -11,8 +11,8 @@ server.use(cors());
 server.get('/api/technologies', async (req, res) => {
     let technologies = await TechnologyModel.find();
     technologies = technologies.map( technology => {
-        technologies.logo = `${req.protocol}://${req.headers.host}/img/${technology.logo}`;
-        return technologies;
+        technology.logo = `${req.protocol}://${req.headers.host}/img/${technology.logo}`;
+        return technology;
     });
     return res.send({error: false, data: technologies});
 });
@@ -30,8 +30,8 @@ server.get('/api/technology/search/:name', async (req, res) => {
         name: {$regex: new RegExp(name, 'i')}
     });
     technologies = technologies.map( technology => {
-        technologies.logo = `${req.protocol}://${req.headers.host}/img/${technology.logo}`;
-        return technologies;
+        technology.logo = `${req.protocol}://${req.headers.host}/img/${technology.logo}`;
+        return technology;
     });
     return res.send({error: false, data: technologies});
 });
